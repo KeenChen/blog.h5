@@ -1,5 +1,7 @@
 'use strict';
 
+const Vue = require('./lib/vue.js');
+
 Vue.component('todo-item', {
     template: '<li>{{ todo.text }}</li>',
     props: ['todo']
