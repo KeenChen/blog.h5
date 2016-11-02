@@ -1,6 +1,8 @@
 'use strict';
 
-const Vue = require('./lib/vue.js');
+import Vue from 'vue';
+import App from './src/App.vue';
+import router from './src/router';
 
 Vue.component('todo-item', {
     template: '<li>{{ todo.text }}</li>',
@@ -20,7 +22,8 @@ const app = new Vue({
             showTitle: true,
             title: 'vue title',
             message: 'hello',
-            todos: todos
+            todos: todos,
+            router
         };
     },
 
@@ -28,7 +31,8 @@ const app = new Vue({
         reverseMsg() {
             this.message = this.message.split('').reverse().join('');
         },
-
-
-    }
+    },
+    render: h => h(App)
 });
+
+console.log(App);

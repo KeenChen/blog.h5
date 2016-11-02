@@ -6,28 +6,9 @@
 
 <body>
 	<div id="app">
-		<h1 v-if='showTitle'>{{title}}</h1>
-		<p>{{message}}</p>
-
-		<div>
-			<p>todo</p>
-			<ul>
-				<li v-for='item in todos'>
-					{{item.text}}
-				</li>
-			</ul>
-		</div>
-
-        <button v-on:click='reverseMsg'>Reverse</button>
-
-        <input v-model='message'>
-
-        <ul>
-            <todo-item v-for='item in todos' v-bind:todo='item'></todo-item>
-        </ul>
 	</div>
 
-	<script src="/assets/dist/bundle.js"></script>
+	<script src="./assets/dist/bundle.js"></script>
 </body>
 
 </html>
