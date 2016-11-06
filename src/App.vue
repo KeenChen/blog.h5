@@ -26,40 +26,49 @@ let items = [
     {
         title: 'one',
         content: 'one content',
-        author: 'xechoz',
+        author: {
+            name: 'xechoz',
+            avatar: '',
+            tech: [
+                'android',
+                'java'
+            ]
+        },
         tags: [
             'android',
             'java'
-        ]
+        ],
+        cover: [
+            '/assets/images/cover.jpeg'
+        ],
+        like: 12,
+        updateAt: 1478353838494,
+        isLike: true,
+        isBookmarked: true
     },
     {
         title: 'two',
         content: 'two content',
-        author: 'xechox',
+        author: {
+            name: 'xechoz',
+            avatar: '',
+            tech: [
+                'android',
+                'java'
+            ]
+        },
         tags: [
             'android',
-            'java',
-            'shell'
-        ]
-    },
-    {
-        title: 'three',
-        content: 'three content',
-        author: 'xechoz',
-        tags: [
-            'android',
-            'javascript'
-        ]
-    },
-    {
-        title: 'four',
-        content: 'four content',
-        author: 'xechoz.zheng',
-        tags: [
-            'linux',
             'java'
-        ]
-    },
+        ],
+        cover: [
+            '/assets/images/cover.jpeg'
+        ],
+        like: 123,
+        updateAt: 1478353838494,
+        isLike: false,
+        isBookmarked: false
+    }
 ];
 
 const App = Vue.component('app', {
@@ -100,9 +109,7 @@ export default App;
 </script>
 
 <style lang="sass">
-    * {
-        border: 1px solid red;
-    }
+   
     
     xz-main {
         main-header {}
