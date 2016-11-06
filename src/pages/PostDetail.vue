@@ -1,11 +1,12 @@
 <template lang='pug'>
-    <p>header</p>
+    p= 'post detail'
 </template>
 
 <script>
 'use strict';
 
-const MainHeader = {
+export default {
+    props: [],
     data() {
         return {
 
@@ -18,10 +19,7 @@ const MainHeader = {
     components: {
 
     }
-};
-
-export default MainHeader;
-
+}
 </script>
 
 <style lang='sass'>
