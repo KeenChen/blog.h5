@@ -1,10 +1,12 @@
 <template lang="pug">
     div(class='hp')
-       main-header(class='hp-header')
+        //- todo: add tools to header
+        main-header(class='hide hp-header')
 
-       list-view(class='hp-list' v-bind:source='items')
-
-       nav-footer(class='hp-footer')
+        list-view(class='hp-list' v-bind:source='items')
+        
+        //- todo: what should be placed at footer?
+        nav-footer(class='hp-footer')
 
     </div>
 
@@ -106,7 +108,7 @@ export default HomePage;
 
 .hp {
     padding: 1em;
-    
+
     .hp-header {
 
     }

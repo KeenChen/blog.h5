@@ -2,13 +2,9 @@
     section(class='list-item')
         //- header: 作者&Blog 信息区。作者头像，作者名字，发布日期，分类，tags
         div(class='item-header')
-            span(class='avatar')
-                img(v-if='item.author.avatar' v-bind:src='item.author.avatar')
-                i(v-if='!item.author.avatar' class='fa fa-user-o')
-            span(class='name')= '{{item.author.name}}'
-            span(class='update-at')= '{{item.updateAt}}'
             div(class='item-tags')
-                span(class='item-tag' v-for='tag in item.tags')= '{{tag}}'
+                i(class='fa fa-tags')
+                span(class='chip item-tag' v-for='tag in item.tags')= '{{tag}}'
             span(class='header-more')
                 i(class='fa fa-ellipsis-v')
 
@@ -26,11 +22,15 @@
                 i(class='fa fa-thumbs-o-up')
             span(class='bookmark')
                 i(:class="[item.isBookmarked? 'fa fa-bookmark': 'fa fa-bookmark-o']")
+            
+            span(class='grey-text text-lighten update-at')= '发布于 {{updateAt}}'                        
             i(class='more fa fa-angle-down')
 </template>
 
 <script>
 'use strict';
+
+import DateFormat from 'dateformat';
 
 /**
  * data model 
@@ -72,6 +72,12 @@ const ListItem = {
 
     components: {
         
+    },
+
+    computed: {
+        updateAt() {
+            return  DateFormat(this.item.updateAt, 'yyyy-mm-dd HH:MM');
+        }
     }
 };
 
@@ -87,34 +93,18 @@ export default ListItem;
 
         .item-header {
             position: relative;
-
-            .avatar {
-                width: 48px;
-                height: 48px;
-                border-radius: 100px;
-                position: relative;
-                display: inline-flex;
-                align-items: center;
-
-                i {
-                    margin: 0 auto;
-                }
-            }
-
-           .name {
-               position: absolute;
-           }
-
-           .upate-at {
-                position: absolute;
-                top: 1.5em;
-                left: 50px;
-           }
+            padding: .25em 0;
 
            .item-tags {
-               span {
+                display: inline-block;
 
-               }
+                i:nth-child(1) {
+                    padding-right: .25em;
+                }
+
+                span {
+                    padding-right: 1em;
+                }
            }
 
            .header-more {
@@ -163,6 +153,12 @@ export default ListItem;
             .more {
                 position: absolute;
                 right: 0;
+            }
+
+            .update-at {
+                font-size: .75em;
+                position: absolute;
+                right: 2em;
             }
         }
     }
