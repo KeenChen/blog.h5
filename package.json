@@ -44,9 +44,12 @@
   "dependencies": {
     "dateformat": "^1.0.12",
     "font-awesome": "^4.7.0",
+    "materialize-css": "^0.97.8",
+    "normalize.css": "^5.0.0",
     "vue": "^2.0.3",
     "vue-resource": "^1.0.3",
     "vue-router": "^2.0.1",
-    "vuex": "^2.0.0"
+    "vuex": "^2.0.0",
+    "zepto": "^1.2.0"
   }
 }

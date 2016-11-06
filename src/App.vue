@@ -30,15 +30,15 @@ export default App;
 </script>
 
 <style lang='sass'>
-    #app {
+@import '../assets/scss/base';
 
-        .app-content {
+.app-content {
+    margin-right: $nav-side-width;
+    padding: 1em;
+}
 
-        }
-
-        .app-nav {
-
-        }
-    }
+.app-nav {
     
+}
+
 </style>

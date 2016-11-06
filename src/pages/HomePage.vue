@@ -105,8 +105,8 @@ export default HomePage;
 <style lang="sass">
 
 .hp {
-    border: 1px solid red;
-
+    padding: 1em;
+    
     .hp-header {
 
     }
