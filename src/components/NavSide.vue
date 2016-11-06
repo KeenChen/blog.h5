@@ -9,8 +9,8 @@
             
         //- nav link
         div(class='ns-link')
-            router-link(class='ns-link-item blue-text text-darken-2' to='/')= 'Home'
-            router-link(class='ns-link-item blue-text text-darken-2' to='/admin')= 'Manager'
+            router-link(class='ns-link-item blue-text text-darken-2' to='/' exact)= 'Home'
+            router-link(class='ns-link-item blue-text text-darken-2' to='/admin' exact)= 'Manager'
 
         //- contact info
         div(class='ns-contact')
@@ -51,6 +51,15 @@ export default NavSide;
 <style lang='sass'>
 @import '../../assets/scss/base';
 
+@mixin link-active() {
+    @extend .grey, .lighten-5 ;
+    border-left: 1px solid #42A5F5;
+};
+
+@mixin link-hover() {
+    @include link-active();
+}
+
 .ns {
     position: fixed;
     top: 0;
@@ -84,14 +93,21 @@ export default NavSide;
             border: 1px solid transparent;
 
             &:hover {
-                @extend .grey, .lighten-5 ;
-                border-left: 1px solid #42A5F5;
+                @include link-hover();
+            }
+
+            &.router-link-active {
+                @include link-active();
             }
         }
 
         a {
             text-decoration: none;
             padding-left: .25em;
+        }
+        
+        .router-link-active {
+
         }
     }
 
@@ -107,11 +123,11 @@ export default NavSide;
             padding: 1em 1em 0 1em;
             
             i {
-                &:before {
+                &::before {
                     padding-right: .5em;
                 }
 
-                &:after {
+                &::after {
                     padding-left: .5em;
                 }
             }
