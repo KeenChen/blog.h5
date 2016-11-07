@@ -1,6 +1,6 @@
 'use strict';
 
-import {Vue, Router} from '../base';
+import Router from 'vue-router';
 import HomePage from '../pages/HomePage.vue';
 import AdminPage from '../pages/AdminPage.vue';
 import PostDetail from '../pages/PostDetail.vue';

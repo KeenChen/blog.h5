@@ -6,7 +6,8 @@
 <script>
 'use strict';
 
-import {Vue, Config} from '../base';
+import Vue from 'vue';
+import {Config} from '../base';
 import ListItem from './ListItem.vue';
 
 const ListView = Vue.component('list-view', {

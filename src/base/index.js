@@ -1,32 +1,24 @@
 'use strict';
 
 import Vue from 'vue';
-import Router from 'vue-router';
 import Vuex from 'vuex';
 import VueResource from 'vue-resource';
+import VueRouter from 'vue-router';
 
-const Http = VueResource;
-
-const Base = {
+const Start = {
     init() {
+        console.log('base init');
         Vue.use(Vuex);
-        Vue.use(Router);
+        Vue.use(VueRouter);
         Vue.use(VueResource);
     }
 };
 
-const Config = {
+Start.init();
+
+export const Config = {
+    isDebug: true,
     Default: {
         PAGE_SIZE: 50
     }
 };
-
-Base.init();
-
-export {
-    Vue,
-    Router,
-    Vuex,
-    Http,
-    Config
-}

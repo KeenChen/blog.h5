@@ -18,8 +18,9 @@
         
         //- footer: 互动功能区。点赞，收藏，转发
         div(class='item-footer')
-            span(class='like')
+            span(class='like' @click='onLike()')
                 i(class='fa fa-thumbs-o-up')
+                span(class='likeCount')= '{{likeCount>0? likeCount: ""}}'
             span(class='bookmark')
                 i(:class="[item.isBookmarked? 'fa fa-bookmark': 'fa fa-bookmark-o']")
             
@@ -31,6 +32,7 @@
 'use strict';
 
 import DateFormat from 'dateformat';
+import {Store, Types} from '../store';
 
 /**
  * data model 
@@ -54,20 +56,30 @@ import DateFormat from 'dateformat';
  *  tech: array. ['android', 'linux'], etc
  * }
  * 
- * 
- * 
- * 
- * 
  **/
  
 const ListItem = {
     props: ['item'],
     data() {
         return {
+            likeCount: 0
         }
     },
     methods: {
-
+        onLike() {
+            const isLike = this.isLike;
+            const that = this;
+            Store.dispatch({
+                    type: Types.Post.LIKE,
+                    isLike
+                }).then((response) => {
+                    console.log('onLike response: ' + isLike);
+                    that.$data.isLike = !that.isLike;
+                    that.likeCount = that.likeCount + 1;
+                }, (error) => {
+                    console.log('onLike error');
+                });
+        }
     },
 
     components: {
@@ -77,7 +89,10 @@ const ListItem = {
     computed: {
         updateAt() {
             return  DateFormat(this.item.updateAt, 'yyyy-mm-dd HH:MM');
-        }
+        },
+        isLike() {
+            return this.item.isLike;
+        },
     }
 };
 
@@ -141,13 +156,15 @@ export default ListItem;
             position: relative;
 
             .like {
-
+                .likeCount {
+                    padding: 0 .5em;
+                }
             }
 
             .bookmark {
                 position: absolute;
                 left: 0;
-                margin-left: 2em;
+                margin-left: 4em;
             }
 
             .more {
