@@ -22,7 +22,6 @@ import ListView from '../components/ListView.vue';
 import api from '../api';
 
 let items = [];
-let isInit = false;
 
 const HomePage = {
   data () {
@@ -37,10 +36,7 @@ const HomePage = {
   },
   
   created() {
-      if (!isInit) {
-        this.init();
-        isInit = true;
-      }
+      this.init();
   },
 
   methods: {
