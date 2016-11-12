@@ -1,5 +1,5 @@
 <template lang='pug'>
-    section(class='list-item')
+    section(class='list-item' @click='onDetail')
         //- header: 作者&Blog 信息区。作者头像，作者名字，发布日期，分类，tags
         div(class='item-header')
             div(class='item-tags')
@@ -33,6 +33,7 @@
 
 import DateFormat from 'dateformat';
 import {Store, Types} from '../store';
+import Router from '../router';
 
 /**
  * data model 
@@ -67,8 +68,10 @@ const ListItem = {
     },
     methods: {
         onLike() {
+            event.stopPropagation();
             const isLike = this.isLike;
             const that = this;
+            
             Store.dispatch({
                     type: Types.Post.LIKE,
                     isLike
@@ -79,6 +82,17 @@ const ListItem = {
                 }, (error) => {
                     console.log('onLike error');
                 });
+        },
+
+        onDetail(event) {
+            event.stopPropagation();
+
+            Router.push({
+                    name: 'post',
+                    params: {
+                        id: this.item.id
+                    }
+            });
         }
     },
 

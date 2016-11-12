@@ -1,6 +1,7 @@
 <template lang='pug'>
     div(class='app')
-        router-view(class='app-content')
+        transition(name='fade' mode='out-in')
+            router-view(class='app-content')
         nav-side(class='app-nav')
 </template>
 

@@ -19,60 +19,15 @@ import {Vue, Vuex} from '../base';
 import MainHeader from '../components/MainHeader.vue';
 import NavFooter from '../components/NavFooter.vue';
 import ListView from '../components/ListView.vue';
+import api from '../api';
 
-let items = [
-    {
-        title: 'one',
-        content: 'one content',
-        author: {
-            name: 'xechoz',
-            avatar: '',
-            tech: [
-                'android',
-                'java'
-            ]
-        },
-        tags: [
-            'android',
-            'java'
-        ],
-        cover: [
-            '/assets/images/cover.jpeg'
-        ],
-        like: 12,
-        updateAt: 1478353838494,
-        isLike: true,
-        isBookmarked: true
-    },
-    {
-        title: 'two',
-        content: 'two content',
-        author: {
-            name: 'xechoz',
-            avatar: '',
-            tech: [
-                'android',
-                'java'
-            ]
-        },
-        tags: [
-            'android',
-            'java'
-        ],
-        cover: [
-            '/assets/images/cover.jpeg'
-        ],
-        like: 123,
-        updateAt: 1478353838494,
-        isLike: false,
-        isBookmarked: false
-    }
-];
+let items = [];
+let isInit = false;
 
 const HomePage = {
   data () {
     return {
-      items
+        items
     }
   },
   components: {
@@ -82,21 +37,33 @@ const HomePage = {
   },
   
   created() {
-      this.init();
+      if (!isInit) {
+        this.init();
+        isInit = true;
+      }
   },
 
   methods: {
       init() {
-          
+          this.fetchData();
       },
 
       fetchData() {
-
+          this.fetchPosts(0, 50);
       },
 
       fetchPosts(page, size) {
-
+          console.log('fetchPosts');
+          api.post.fetch(page, size).then((response) => {
+              items = response['content'];
+          }, (error) => {
+              console.log('fetch post fail: ' + JSON.stringify(error));
+          });
       }
+  },
+
+  computed: {
+      
   }
 };
 

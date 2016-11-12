@@ -57,7 +57,7 @@ export default NavSide;
 };
 
 @mixin link-hover() {
-    @include link-active();
+    @extend .grey, .lighten-5 ;
 }
 
 .ns {

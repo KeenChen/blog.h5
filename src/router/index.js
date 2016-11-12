@@ -7,17 +7,20 @@ import PostDetail from '../pages/PostDetail.vue';
 
 const routes = [
     {
+        name: 'index',
         path: '/',
         component: HomePage
     },
     {
+        name: 'admin',
         path: '/admin',
         component: AdminPage
     },
     {
+        name: 'post',
         path: '/post/:id',
         component: PostDetail
-    }
+    },
 ];
 
 const instance = new Router({

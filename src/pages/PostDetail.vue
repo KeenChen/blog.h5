@@ -1,5 +1,5 @@
 <template lang='pug'>
-    p= 'post detail'
+    p= 'post detail: {{$route.params.id}}'
 </template>
 
 <script>
