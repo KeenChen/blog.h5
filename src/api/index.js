@@ -26,6 +26,15 @@ const apiPost = {
 
     update(param, data) {
 
+    },
+
+    fetchDetail(id) {
+        return new Promise((resolve, reject) => {
+            http.get(url.post + '/' + id).then(response => {
+                let json = response.json();
+                resolve(json);
+            }, reject);
+        });
     }
 };
 
