@@ -1,2 +1,7 @@
 @import './base/_variables';
 @import './base/_color';
+
+html, body {
+    width: 100%;
+    height: 100%;
+}

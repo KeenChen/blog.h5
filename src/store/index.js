@@ -3,6 +3,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import post from './modules/Post';
+import user from './modules/User';
 import {Config} from '../base';
 import types from './types';
 
@@ -20,7 +21,8 @@ const mutations = {
 
 
 let modules = {
-    post
+    post,
+    user
 };
 
 export const Store = new Vuex.Store({

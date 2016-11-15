@@ -44,7 +44,11 @@
   "dependencies": {
     "dateformat": "^1.0.12",
     "font-awesome": "^4.7.0",
+    "json-loader": "^0.5.4",
+    "jssha": "^2.2.0",
+    "marked": "^0.3.6",
     "materialize-css": "^0.97.8",
+    "node-forge": "^0.6.45",
     "normalize.css": "^5.0.0",
     "vue": "^2.0.3",
     "vue-resource": "^1.0.3",

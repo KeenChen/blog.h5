@@ -8,5 +8,8 @@ export default {
     user: base + '/users',
     post: base + '/articles',
     admin: base + '/admin',
-    account: base + '/account'
+    account: {
+        index: base + '/account',
+        login: base + '/account/login'
+    }
 }
