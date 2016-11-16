@@ -46,6 +46,7 @@
     "font-awesome": "^4.7.0",
     "json-loader": "^0.5.4",
     "jssha": "^2.2.0",
+    "lodash": "^4.17.1",
     "marked": "^0.3.6",
     "materialize-css": "^0.97.8",
     "node-forge": "^0.6.45",

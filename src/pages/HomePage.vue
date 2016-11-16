@@ -21,12 +21,13 @@ import NavFooter from '../components/NavFooter.vue';
 import ListView from '../components/ListView.vue';
 import api from '../api';
 
-let items = [];
-
 const HomePage = {
+
+  items: [],
+
   data () {
     return {
-        items
+        items: HomePage.items
     }
   },
   components: {
@@ -51,7 +52,24 @@ const HomePage = {
       fetchPosts(page, size) {
           console.log('fetchPosts');
           api.post.fetch(page, size).then((response) => {
-              items = response['content'];
+              console.log('response: ' + JSON.stringify(response['content']));
+              const items = response['content'];
+
+              if (items && items.length > 0) {
+                  HomePage.items.length = 0;
+                  
+                //   items.forEach(item => {
+                //       HomePage.items.push(item);
+                //   })
+
+                Array.prototype.push.apply(HomePage.items, items);
+                
+                HomePage.items.push(null);
+                HomePage.items.pop();
+
+                  console.log(" HomePage.items: " + JSON.stringify( HomePage.items.length));
+              }
+
           }, (error) => {
               console.log('fetch post fail: ' + JSON.stringify(error));
           });
