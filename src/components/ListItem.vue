@@ -10,7 +10,7 @@
 
         //- content: blog 内容概览。图片，文字概览
         div(class='item-content') 
-            img(class='item-content-cover' v-bind:src='item.cover[0]')
+            img(v-show='item.cover && item.cover.length > 0' class='item-content-cover' v-bind:src='item.cover && item.cover[0]')
             section(class='item-content-overview')
                 h4= '{{item.title}}'
                 p= '{{item.content}}'
@@ -90,7 +90,7 @@ const ListItem = {
             Router.push({
                     name: 'post',
                     params: {
-                        id: this.item.id
+                        id: this.item._id
                     }
             });
         }
@@ -123,6 +123,7 @@ export default ListItem;
         .item-header {
             position: relative;
             padding: .25em 0;
+            min-height: 2em;
 
            .item-tags {
                 display: inline-block;
@@ -140,7 +141,7 @@ export default ListItem;
                 position: absolute;
                 right: 0;
                 top: 0;
-                padding: 1em;
+                padding: 0.5em 1em 1em 1em;
            }
         }
 

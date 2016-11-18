@@ -3,7 +3,7 @@
         toolbar(class='admin-toolbar' @toolEdit='onEdit' @toolReview='onReview' @toolPublish='onPublish')
         input(class='admin-title' v-model='post.title' v-bind:placeholder='hint.title')
 
-        textarea(class='admin-content' v-bind:placeholder='hint.content')
+        textarea(class='admin-content' v-model='post.content' v-bind:placeholder='hint.content')
 </template>
 
 <script>
@@ -12,8 +12,10 @@
 import Vue from 'vue';
 import ToolBar from '../components/ToolBar.vue';
 import api from '../api';
+import router from '../router';
 
 let post = {};
+
 let hint = {
     title: 'Title',
     content: 'How you feel today?'
@@ -33,14 +35,15 @@ export default {
         },
 
         onPublish() {
-            console.log('do onPublish');
+            console.log('do onPublish: ' + JSON.stringify(post));
             
             api.post.save(post).then((response) => {
                 console.log('save post success: ' + JSON.stringify(response));
+                const id = response.content['_id'] || response.content['id'];
 
-                router.push({
-                    name: 'index'
-                });
+                if (!post.id) {
+                    post['id'] = id; 
+                }
             }, (error) => {
                 console.log('save post fail: ' + JSON.stringify(error));
             });

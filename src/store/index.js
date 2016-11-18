@@ -16,7 +16,9 @@ const actions = {
 };
 
 const mutations = {
-
+    init() {
+        Store.commit('userInit');
+    }
 };
 
 
@@ -26,6 +28,7 @@ let modules = {
 };
 
 export const Store = new Vuex.Store({
+    mutations,
     modules,
     strict: Config.isDebug
 });

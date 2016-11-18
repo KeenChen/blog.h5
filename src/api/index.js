@@ -42,9 +42,10 @@ const apiUser = {
 };
 
 const apiPost = {
-    api: resource('http://localhost:3000/articles', {}, {
+    api: resource('http://localhost:3000/articles{/id}', {}, {
         post: {
-            method: 'POST'
+            method: 'POST',
+            url: 'http://localhost:3000/articles{/id}'
         }
     }),
 
@@ -63,15 +64,14 @@ const apiPost = {
     },
 
     save(body) {
-        console.log('save');
-        const self = this;
+        console.log('save: ' + JSON.stringify(body));
         body.author = Store.state.user.uid;
 
         return new Promise((resolve, reject) => {
-            self.api.post({id: body.id}, body).then(response => {
+            apiPost.api.save({id: body.id}, body).then(response => {
                 console.log('response: ' + JSON.stringify(response));
 
-                const json = response.json();
+                const json = response.body;
 
                 if (json && json.code == 0) {
                     resolve(json);

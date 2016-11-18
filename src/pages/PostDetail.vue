@@ -1,25 +1,22 @@
 <template lang='pug'>
     article(class='post')
         h4(class='post-title')= '{{post.title}}'
-        section(class='post-content' v-html='post.content')
+        section(class='post-content' v-html='markdown.content')
 </template>
 
 <script>
 'use strict';
 
+import Vue from 'vue';
+import marked from 'marked';
 import api from '../api';
 
-let post = {
-    id: '',
-    title: 'hello',
-    content: '<h1>welcome</h1>'
-};
-
-export default {
+const postDetail = {
+    post: {},
     props: [],
     data() {
         return {
-            post
+            post: postDetail.post
         }
     },
 
@@ -37,7 +34,12 @@ export default {
         fetchData() {
             api.post.fetchDetail(this.id).then(response => {
                 if (response && response.code == 0) {
-                    post = response.content['content'];
+                    console.log('post detail: ' + JSON.stringify(response));
+                    const data = response.content;
+                    postDetail.post.title = data.title;
+                    console.log('data: ' + data);
+                    postDetail.post.content = data.content;
+                    postDetail.post.tags = data.tags;
                 } else {
                     console.log('error: ' + JSON.stringify(response));
                 }
@@ -47,10 +49,25 @@ export default {
         }
     },
 
-    components: {
+    computed: {
+        markdown() {
+            let markedContent = '';
 
+            if (postDetail.post && postDetail.post.content) {
+                markedContent = marked(postDetail.post.content);
+            }
+
+            return {
+                content: markedContent
+            }
+        }
     }
-}
+};
+
+
+
+export default Vue.component('PostDetail', postDetail);
+
 </script>
 
 <style lang='sass'>

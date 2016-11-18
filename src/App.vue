@@ -21,10 +21,13 @@ const App = {
     },
 
     created() {
+        this.init();
+
         const isLogin = Store.getters.isLogin;
         console.log('isLogin: ' + isLogin);
 
         if (isLogin) {
+            router.push('/');
         } else {
             router.push({
                 name: 'account'
@@ -34,7 +37,9 @@ const App = {
     },
 
     methods: {
-
+        init() {
+            Store.commit('init');
+        }
     },
 
     components: {
