@@ -1,6 +1,6 @@
 <template lang='pug'>
     article(class='post')
-        h4(class='post-title')= '{{post.title}}'
+        h4(class='post-title')= 'post title {{post.title}}'
         section(class='post-content' v-html='markdown.content')
 </template>
 
@@ -11,12 +11,15 @@ import Vue from 'vue';
 import marked from 'marked';
 import api from '../api';
 
-const postDetail = {
-    post: {},
+const postDetail = Vue.component('PostDetail', {
     props: [],
     data() {
         return {
-            post: postDetail.post
+            post: {
+                title: '',
+                content: '',
+                tags: []
+            }
         }
     },
 
@@ -32,14 +35,16 @@ const postDetail = {
         },
 
         fetchData() {
+            console.log('post id: ' + this.id);
+            const self = this;
             api.post.fetchDetail(this.id).then(response => {
                 if (response && response.code == 0) {
                     console.log('post detail: ' + JSON.stringify(response));
-                    const data = response.content;
-                    postDetail.post.title = data.title;
-                    console.log('data: ' + data);
-                    postDetail.post.content = data.content;
-                    postDetail.post.tags = data.tags;
+                    const content = response.content;
+                    
+                    self.post.title = content.title;
+                    self.post.content = content.content;
+                    self.post.tags = content.tags;
                 } else {
                     console.log('error: ' + JSON.stringify(response));
                 }
@@ -51,22 +56,32 @@ const postDetail = {
 
     computed: {
         markdown() {
-            let markedContent = '';
+            console.log('markdown ' + Date.now());
 
-            if (postDetail.post && postDetail.post.content) {
-                markedContent = marked(postDetail.post.content);
+            let markedContent = 'empty marked';
+
+            if (this.post && this.post.content) {
+                markedContent = marked(this.post.content);
             }
 
             return {
                 content: markedContent
             }
-        }
+        },
+
+        // post()  {
+        //     return {
+        //         title: postDetail.post.title,
+        //         content: postDetail.post.content,
+        //         tags: postDetail.post.tags
+        //     }
+        // }
     }
-};
+});
 
 
 
-export default Vue.component('PostDetail', postDetail);
+export default postDetail;
 
 </script>
 
