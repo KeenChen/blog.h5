@@ -14,35 +14,49 @@ import ToolBar from '../components/ToolBar.vue';
 import api from '../api';
 import router from '../router';
 
-let post = {};
 
 let hint = {
     title: 'Title',
     content: 'How you feel today?'
 };
 
-export default {
+const Editor = Vue.component('Editor', {
     props: [],
     data() {
         return {
-            post,
+            post: {
+                _id: '',
+                title: '',
+                content: '',
+                author: ''
+            },
             hint
         }
     },
+    created() {
+        console.log('this.$route.params: ' + JSON.stringify(this.$route.params));
+
+        const post = this.$route.params['post'];
+        console.log('post: ' + JSON.stringify(post));
+        if (post) {
+            this.post = post;
+        }
+    },
+
     methods: {
         onReview() {
             console.log('do onReview');
         },
 
         onPublish() {
-            console.log('do onPublish: ' + JSON.stringify(post));
+            console.log('do onPublish: ' + JSON.stringify(this.post));
             
-            api.post.save(post).then((response) => {
+            api.post.save(this.post).then((response) => {
                 console.log('save post success: ' + JSON.stringify(response));
                 const id = response.content['_id'] || response.content['id'];
 
-                if (!post.id) {
-                    post['id'] = id; 
+                if (!this.post._id) {
+                    this.post['_id'] = id; 
                 }
             }, (error) => {
                 console.log('save post fail: ' + JSON.stringify(error));
@@ -57,7 +71,10 @@ export default {
     components: {
         toolbar: ToolBar
     }
-}
+});
+
+export default Editor;
+
 </script>
 
 <style lang='sass'>

@@ -2,6 +2,8 @@
     article(class='post')
         h4(class='post-title')= '{{post.title}}'
         section(class='post-content' v-html='markdown.content')
+        span(v-show='isOwner' class='post-edit' @click='onEdit')
+            i(class='fa fa-pencil')= ' Edit'
 </template>
 
 <script>
@@ -10,15 +12,22 @@
 import Vue from 'vue';
 import marked from 'marked';
 import api from '../api';
+import {Store} from '../store';
+import router from '../router';
 
 const postDetail = Vue.component('PostDetail', {
     props: [],
     data() {
         return {
             post: {
+                _id: '',
                 title: '',
                 content: '',
-                tags: []
+                tags: [],
+                author: '',
+                comment: [],
+                createdAt: '',
+                updatedAt: ''
             }
         }
     },
@@ -35,21 +44,27 @@ const postDetail = Vue.component('PostDetail', {
         },
 
         fetchData() {
-            console.log('post id: ' + this.id);
             const self = this;
             api.post.fetchDetail(this.id).then(response => {
                 if (response && response.code == 0) {
-                    console.log('post detail: ' + JSON.stringify(response));
-                    const content = response.content;
-                    
-                    self.post.title = content.title;
-                    self.post.content = content.content;
-                    self.post.tags = content.tags;
+                    const post = response.content;
+                    self.post = post;
                 } else {
                     console.log('error: ' + JSON.stringify(response));
                 }
             }, error => {
                 console.log('error: ' + JSON.stringify(error));
+            });
+        },
+
+        onEdit(event) {
+            event.stopPropagation();
+            
+            router.push({
+                name: 'editor',
+                params: {
+                    'post': this.post
+                }
             });
         }
     },
@@ -58,7 +73,7 @@ const postDetail = Vue.component('PostDetail', {
         markdown() {
             console.log('markdown ' + Date.now());
 
-            let markedContent = 'empty marked';
+            let markedContent = '';
 
             if (this.post && this.post.content) {
                 markedContent = marked(this.post.content);
@@ -69,13 +84,15 @@ const postDetail = Vue.component('PostDetail', {
             }
         },
 
-        // post()  {
-        //     return {
-        //         title: postDetail.post.title,
-        //         content: postDetail.post.content,
-        //         tags: postDetail.post.tags
-        //     }
-        // }
+        isOwner() {
+            console.log('Store.getters.isLogin: ' + JSON.stringify({
+                'Store.getters.isLogin': Store.getters.isLogin,
+                'this.post.author': this.post.author,
+                'Store.getters.user._id': Store.getters.user._id
+            }));
+
+            return Store.getters.isLogin && this.post.author == Store.getters.user._id;
+        }
     }
 });
 
@@ -100,6 +117,20 @@ export default postDetail;
             }
 
             pre code {
+            }
+        }
+
+        .post-edit {
+            position: absolute;
+            top: 4em;
+            right: 12em;
+
+            i {
+                font-size: 1.2em;
+            }
+
+            &:hover {
+                cursor: pointer;
             }
         }
     }

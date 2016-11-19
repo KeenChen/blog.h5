@@ -3,9 +3,9 @@
         ul
             li(class='tool-edit' @click='onEdit')='Edit'
                 i(class='fa fa-code fa-fw fa-pull-left')
-            li(class='tool-review' @click='onReview')='review'
+            li(class='tool-review' @click='onReview')='Preview'
                 i(class='fa fa-file-text-o fa-fw fa-pull-left')
-            li(class='tool-summit' @click='onPubish')='publish'
+            li(class='tool-summit' @click='onPubish')='Publish'
                 i(class='fa fa-send-o fa-fw fa-pull-left')
             
                 

@@ -68,7 +68,7 @@ const apiPost = {
         body.author = Store.state.user.uid || Store.state.user._id;
 
         return new Promise((resolve, reject) => {
-            apiPost.api.save({id: body.id}, body).then(response => {
+            apiPost.api.save({id: body._id}, body).then(response => {
                 console.log('response: ' + JSON.stringify(response));
 
                 const json = response.body;
