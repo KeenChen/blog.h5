@@ -12,11 +12,10 @@
 
 const user = {
     state: {
-        // uid: '',
-        // name: '',
-        // avatar: '',
-        // accessToken: '',
-        // _id: ''
+        name: '',
+        avatar: '',
+        accessToken: '',
+        _id: ''
     },
 
     getters: {
@@ -29,13 +28,21 @@ const user = {
         },
 
         isLogin(state) {
-            return (state.uid && state.uid.length > 0) || (state._id && state._id.length > 0);
+            return state._id && state._id.length > 0;
+        },
+
+        user(state) {
+            return {
+                name: state.name,
+                avatar: state.avatar,
+                accessToken: state.accessToken,
+                _id: state._id
+            };
         }
     },
 
     mutations: {
         signIn(state, payload) {
-            console.log('save json: ' + JSON.stringify(payload));
             const json = payload.data;
             state._id = json['_id'];
             state.name = json.name;
@@ -55,11 +62,7 @@ const user = {
         },
 
         userInit(state) {
-            console.log('userInit: ' + JSON.stringify(state));
-
             const user = JSON.parse(localStorage.getItem('user'));
-
-            console.log('user: ' + JSON.stringify(user));
 
             if (user) {
                 state._id = user._id || user.uid;
@@ -75,7 +78,6 @@ const user = {
     },
 
     onSave(state) {
-        console.log('save user info to data base: ' + JSON.stringify(state));
         localStorage.setItem('user', JSON.stringify(state));
     },
 

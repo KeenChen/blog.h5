@@ -1,16 +1,14 @@
 <template lang='pug'>
     section(class='ns')
         //- nav header: author info
-        div(class='ns-header')
+        div(class='ns-header' @click='onLogin')
             img(v-if='avatar' v-bind:src='avatar')
-            span(v-if='!avatar' class='ns-avatar')
-                i(class='fa fa-android')
             span(class='grey-text ns-title')= 'xechoz\'s blog'
             
         //- nav link
         div(class='ns-link')
             router-link(class='ns-link-item blue-text text-darken-2' to='/' exact)= 'Home'
-            router-link(class='ns-link-item blue-text text-darken-2' to='/admin' exact)= 'Manager'
+            router-link(v-show='isLogin' class='ns-link-item blue-text text-darken-2' to='/admin' exact)= 'Manager'
 
         //- contact info
         div(class='ns-contact')
@@ -29,18 +27,37 @@
 <script>
 'use strict';
 
+import {Store} from '../store';
+import router from '../router';
+import Event from '../common/events';
+
 const NavSide =  {
     data() {
         return {
-            avatar: '/assets/images/cover.jpeg'
+            avatar: Store.getters.user.avatar || '/assets/images/default_avatar.jpg',
+            isLogin: Store.getters.isLogin || false
         }
     },
-    methods: {
 
+    created() {
+        window.addEventListener(Event.user.LOGIN, this.onLoginEvent);
     },
 
-    components: {
+    methods: {
+        onLogin(event) {
+            event.stopPropagation();
+            
+            if (!this.isLogin) {
+                router.push({
+                    name: 'account'
+                });
+            }
+        },
 
+        onLoginEvent(event) {
+
+             this.isLogin = Store.getters.isLogin;
+        }
     }
 };
 
@@ -71,7 +88,7 @@ export default NavSide;
 
     .ns-header {
         text-align: center;
-        padding-bottom: 1em;
+        margin: 2em auto;
 
         img {
             width: 4em;

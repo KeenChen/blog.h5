@@ -6,7 +6,7 @@
         list-view(class='hp-list' v-bind:source='items')
         
         //- todo: what should be placed at footer?
-        nav-footer(class='hp-footer')
+        nav-footer(class='hp-footer hide')
 
     </div>
 

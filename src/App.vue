@@ -28,13 +28,13 @@ const App = {
         const isLogin = Store.getters.isLogin;
         console.log('isLogin: ' + isLogin);
 
-        if (isLogin) {
-            router.push('/');
-        } else {
-            router.push({
-                name: 'account'
-            });
-        }
+        // if (isLogin) {
+        //     router.push('/');
+        // } else {
+        //     router.push({
+        //         name: 'account'
+        //     });
+        // }
     },
 
     methods: {
