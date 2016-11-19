@@ -12,7 +12,7 @@ module.exports = {
         rules: [
             {
                 test: /\.vue$/,
-                loader: 'vue'
+                loader: 'vue-loader'
             },
             {
                 test: /\.js$$/,
@@ -41,6 +41,7 @@ module.exports = {
             'vue$': 'vue/dist/vue'
         }
     },
+    
     devServer: {
         historyApiFallback: true,
         noInfo: true
