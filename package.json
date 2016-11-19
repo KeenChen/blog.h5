@@ -44,6 +44,7 @@
   "dependencies": {
     "dateformat": "^1.0.12",
     "font-awesome": "^4.7.0",
+    "highlight.js": "^9.8.0",
     "json-loader": "^0.5.4",
     "jssha": "^2.2.0",
     "lodash": "^4.17.1",
@@ -51,6 +52,8 @@
     "materialize-css": "^0.97.8",
     "node-forge": "^0.6.45",
     "normalize.css": "^5.0.0",
+    "prism": "^1.0.0",
+    "prismjs": "^1.5.1",
     "vue": "^2.0.3",
     "vue-resource": "^1.0.3",
     "vue-router": "^2.0.1",

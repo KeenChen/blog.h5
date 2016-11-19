@@ -13,7 +13,7 @@
             img(v-show='item.cover && item.cover.length > 0' class='item-content-cover' v-bind:src='item.cover && item.cover[0]')
             section(class='item-content-overview')
                 h4= '{{item.title}}'
-                p= '{{item.content}}'
+                div(v-html='item.content')
                 span= '...'
         
         //- footer: 互动功能区。点赞，收藏，转发
@@ -31,6 +31,7 @@
 <script>
 'use strict';
 
+import marked from 'marked';
 import DateFormat from 'dateformat';
 import {Store, Types} from '../store';
 import Router from '../router';
@@ -106,7 +107,7 @@ const ListItem = {
         },
         isLike() {
             return this.item.isLike;
-        },
+        }
     }
 };
 
@@ -116,9 +117,11 @@ export default ListItem;
 
 <style lang='sass'>
     .list-item {
-        padding: .5em;
+        position: relative;
+        padding: 0.5em;
         box-shadow: 0px 2px 4px 2px rgba(0,0,0,0.14);
         margin-bottom: 2em;
+        min-height: 24em;
 
         .item-header {
             position: relative;
@@ -168,7 +171,10 @@ export default ListItem;
         }
 
         .item-footer {
-            position: relative;
+            position: absolute;
+            bottom: 0.5em;
+            left: 1em;
+            right: 1em;
 
             .like {
                 .likeCount {

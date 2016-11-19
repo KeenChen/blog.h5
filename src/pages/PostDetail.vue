@@ -1,6 +1,6 @@
 <template lang='pug'>
     article(class='post')
-        h4(class='post-title')= 'post title {{post.title}}'
+        h4(class='post-title')= '{{post.title}}'
         section(class='post-content' v-html='markdown.content')
 </template>
 
@@ -87,12 +87,20 @@ export default postDetail;
 
 <style lang='sass'>
     .post {
+        margin-left: 8em;
+        
         .post-title {
 
         }
 
         .post-content {
 
+           code {
+               
+            }
+
+            pre code {
+            }
         }
     }
 </style>

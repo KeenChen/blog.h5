@@ -8,6 +8,8 @@
 <script>
 'use strict';
 
+import marked from 'marked';
+import highlightJs from 'highlight.js';
 import NavSide from './components/NavSide.vue';
 import {Store} from './store';
 import router from './router';
@@ -33,12 +35,28 @@ const App = {
                 name: 'account'
             });
         }
-
     },
 
     methods: {
         init() {
             Store.commit('init');
+
+            highlightJs.initHighlightingOnLoad();
+            marked.setOptions({
+                renderer: new marked.Renderer(),
+                gfm: true,
+                tables: true,
+                breaks: false,
+                pedantic: false,
+                sanitize: false,
+                smartLists: true,
+                smartypants: false,
+
+                highlight(code) {
+                    console.log('highlight code: ' + code);
+                    return highlightJs.highlightAuto(code).value;
+                }
+            });
         }
     },
 
