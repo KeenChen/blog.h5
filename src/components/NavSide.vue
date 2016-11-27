@@ -18,7 +18,7 @@
             span(class='hide')= 'Develop by xechoz.zheng'
             span(class='ns-github')
                 i(class='fa fa-github')
-                a(href='https://github.com/xechoz/LearnVueJs/' target='_blank')= 'open source'
+                a(href='https://github.com/xechoz/blog.h5' target='_blank')= 'open source'
             span(class='ns-vue')
                 a(href='https://vuejs.org/' target='_blank')= 'Power by Vue.js'
 
