@@ -49,8 +49,8 @@
     "vue-hot-reload-api": "^2.0.6",
     "vue-html-loader": "^1.2.3",
     "vue-loader": "^9.9.5",
-    "webpack": "^2.1.0-beta.25",
-    "webpack-dev-server": "^2.1.0-beta.10",
+    "webpack": "^2.1.0-beta.27",
+    "webpack-dev-server": "^2.1.0-beta.11",
     "zepto": "^1.2.0"
   },
   "dependencies": {
