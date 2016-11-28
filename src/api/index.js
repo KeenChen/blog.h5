@@ -42,10 +42,10 @@ const apiUser = {
 };
 
 const apiPost = {
-    api: resource('http://localhost:3000/articles{/id}', {}, {
+    api: resource(url.post + '{/id}', {}, {
         post: {
             method: 'POST',
-            url: 'http://localhost:3000/articles{/id}'
+            url: url.post + '{/id}'
         }
     }),
 
