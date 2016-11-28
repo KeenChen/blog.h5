@@ -17,7 +17,7 @@ const Start = {
 Start.init();
 
 export const Config = {
-    isDebug: true,
+    isDebug: process.env.NODE_ENV == 'development',
     Default: {
         PAGE_SIZE: 50
     }
