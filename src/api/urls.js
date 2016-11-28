@@ -1,6 +1,6 @@
 'use strict';
 
-import Config from '../base';
+import {Config} from '../base';
 
 const base = Config.isDebug? 'http://localhost:3000': 'https://api.xechoz.xyz';
 
