@@ -104,8 +104,12 @@ export default postDetail;
 
 <style lang='sass'>
     .post {
-        margin-left: 8em;
-        
+        max-width: 56em;
+        background: rgba(250, 250, 250, 0.53);
+        margin: 0 auto;
+        position: relative;
+        right: 4em;
+
         .post-title {
 
         }
