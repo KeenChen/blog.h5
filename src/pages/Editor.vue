@@ -1,6 +1,6 @@
 <template lang='pug'>
     section(class='admin')
-        toolbar(class='admin-toolbar' @toolEdit='onEdit' @toolReview='onReview' @toolPublish='onPublish')
+        toolbar(class='admin-toolbar' @toolEdit='onEdit' @toolReview='onPreview' @toolPublish='onPublish')
         input(class='admin-title' v-model='post.title' v-bind:placeholder='hint.title')
 
         textarea(class='admin-content' v-model='post.content' v-bind:placeholder='hint.content')
@@ -12,8 +12,7 @@
 import Vue from 'vue';
 import ToolBar from '../components/ToolBar.vue';
 import api from '../api';
-import router from '../router';
-
+import Router from '../router';
 
 let hint = {
     title: 'Title',
@@ -44,8 +43,15 @@ const Editor = Vue.component('Editor', {
     },
 
     methods: {
-        onReview() {
-            console.log('do onReview');
+        onPreview() {
+            console.log('do onPreview');
+
+            Router.push({
+                name: 'preview',
+                params: {
+                    id: this.post._id
+                }
+            });
         },
 
         onPublish() {

@@ -62,6 +62,7 @@ export default {
             li {
                 display: inline-block;
                 text-align: center;
+                cursor: pointer;
             }
         }
         .tool-review {

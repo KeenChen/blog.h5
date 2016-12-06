@@ -16,7 +16,7 @@ import {Store} from '../store';
 import router from '../router';
 
 const postDetail = Vue.component('PostDetail', {
-    props: [],
+    props: ['post-id'],
     data() {
         return {
             post: {
@@ -38,7 +38,7 @@ const postDetail = Vue.component('PostDetail', {
 
     methods: {
         init() {
-            this.id = this.$route.params['id'];
+            this.id = this.$route.params['id'] || this['post-id'];
 
             this.fetchData();
         },

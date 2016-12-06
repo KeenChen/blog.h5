@@ -24,4 +24,5 @@ export const Config = {
     }
 };
 
+console.log('process.env: ' + JSON.stringify(process.env));
 console.log('Config: ' + JSON.stringify(Config));

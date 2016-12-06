@@ -5,6 +5,7 @@ import HomePage from '../pages/HomePage.vue';
 import Editor from '../pages/Editor.vue';
 import PostDetail from '../pages/PostDetail.vue';
 import Account from '../pages/Account.vue';
+import Preview from '../pages/Preview.vue';
 
 const routes = [
     {
@@ -31,6 +32,13 @@ const routes = [
         name: 'editor',
         path: '/editor',
         component: Editor
+    }
+    
+    ,
+    {
+        name: 'preview',
+        path: '/preview/:id',
+        component: Preview
     }
 ];
 
