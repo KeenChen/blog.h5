@@ -110,6 +110,22 @@ export default postDetail;
         position: relative;
         right: 4em;
 
+        h1 {
+            font-size: 2.5em;
+        }
+
+        h2 {
+            font-size: 2.5em;
+        }
+
+        h3 {
+            font-size: 2em;
+        }
+
+        h4, h5, h6 {
+            font-size: 1.5em;
+        }
+
         .post-title {
 
         }
