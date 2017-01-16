@@ -1,6 +1,6 @@
-@import '/node_modules/highlight.js/styles/monokai.css';
-@import './base/_variables';
-@import './base/_color';
+@import './partial/_index';
+@import './mobile/_index';
+
 html,
 body {
     width: 100%;

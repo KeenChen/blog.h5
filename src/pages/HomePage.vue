@@ -82,8 +82,6 @@ export default HomePage;
 <style lang="sass">
 
 .hp {
-    padding: 2em 8em;
-
     .hp-header {
 
     }

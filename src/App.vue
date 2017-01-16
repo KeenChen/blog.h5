@@ -81,12 +81,23 @@ export default App;
 }
 
 .app-content {
-    margin-right: $nav-side-width;
-    padding: 1em;
+    padding: 1em $nav-side-width 1em 1em;
+    margin: auto 5%;
 }
 
 .app-nav {
     
+}
+
+@media only screen and (max-width: 720px) {
+    .app-content {
+        padding: 0;
+        margin: 0;
+    }
+
+    .app-nav {
+        display: none;
+    }
 }
 
 </style>
