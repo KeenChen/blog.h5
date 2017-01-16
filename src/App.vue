@@ -84,7 +84,6 @@ export default App;
 .app-content {
     padding: 1em $nav-side-width 1em 1em;
     margin: auto 5%;
-    width: 100%;
     height: 100%;
 }
 

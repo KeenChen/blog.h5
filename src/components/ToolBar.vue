@@ -1,12 +1,12 @@
 <template lang='pug'>
     section(class='tool')
         ul
-            li(class='tool-edit' @click='onEdit')='Edit'
-                i(class='fa fa-code fa-fw fa-pull-left')
-            li(class='tool-review' @click='onReview')='Preview'
-                i(class='fa fa-file-text-o fa-fw fa-pull-left')
-            li(class='tool-summit' @click='onPubish')='Publish'
-                i(class='fa fa-send-o fa-fw fa-pull-left')
+            li(class='tool-edit' @click='onEdit')
+                i(class='fa fa-code fa-fw fa-pull-left')=' Edit'
+            li(class='tool-review' @click='onReview')
+                i(class='fa fa-file-text-o fa-fw fa-pull-left')=' Preview'
+            li(class='tool-summit' @click='onPubish')
+                i(class='fa fa-send-o fa-fw fa-pull-left')=' Publish'
             
                 
 </template>
@@ -69,15 +69,19 @@ $tool-background-color: #fafafa;
 
             li {
                 display: inline-block;
-                text-align: center;
                 cursor: pointer;
                 height: 100%; 
                 background: $tool-background-color; 
-                text-align: center; 
-                padding: 1em;
 
                 &:hover {
                     background: #f5f5f5;
+                }
+
+                i {
+                    width: 100%;
+                    height: 100%;
+                    line-height: 4;
+                    padding: 0 1em;
                 }
             }
         }

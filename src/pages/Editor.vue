@@ -15,8 +15,8 @@ import api from '../api';
 import Router from '../router';
 
 let hint = {
-    title: 'Title',
-    content: 'How you feel today?'
+    title: '标题wakaka',
+    content: '我今天有话说'
 };
 
 const Editor = Vue.component('Editor', {
@@ -92,8 +92,10 @@ export default Editor;
     height: 100%;
 
     .admin-title {
-        padding: 0.25em 0.5em;
+        padding: 0.5em;
         border-bottom: solid 1px #f5f5f5;
+        padding: .25em;
+        box-sizing: border-box;
     }
 
     .admin-content {
