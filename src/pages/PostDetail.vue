@@ -109,6 +109,8 @@ export default postDetail;
         margin: 0 auto;
         position: relative;
         right: 4em;
+        left: 0;
+        padding: 1em;
 
         h1 {
             font-size: 2.5em;
@@ -142,8 +144,9 @@ export default postDetail;
 
         .post-edit {
             position: absolute;
-            top: 4em;
-            right: 12em;
+            top: 0;
+            right: 1em;
+            padding: 1em;
 
             i {
                 font-size: 1.2em;

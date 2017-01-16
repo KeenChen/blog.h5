@@ -92,12 +92,14 @@ export default Editor;
     height: 100%;
 
     .admin-title {
-
+        padding: 0.25em 0.5em;
+        border-bottom: solid 1px #f5f5f5;
     }
 
     .admin-content {
-    flex-grow: 1;
-
+        flex-grow: 1;
+        padding: .5em .5em;
+        border: 0px;
     }
 }
 </style>

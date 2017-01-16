@@ -1,7 +1,8 @@
 <template lang='pug'>
     div(class='app')
-        transition(name='fade' mode='out-in')
-            router-view(class='app-content')
+        div(class='app-content')
+            transition(name='fade' mode='out-in')
+            router-view
         nav-side(class='app-nav')
 </template>
 
@@ -83,6 +84,8 @@ export default App;
 .app-content {
     padding: 1em $nav-side-width 1em 1em;
     margin: auto 5%;
+    width: 100%;
+    height: 100%;
 }
 
 .app-nav {
