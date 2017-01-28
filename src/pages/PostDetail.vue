@@ -1,9 +1,10 @@
 <template lang='pug'>
-    article(class='post')
-        h4(class='post-title')= '{{post.title}}'
-        section(class='post-content' v-html='markdown.content')
-        span(v-show='isOwner' class='post-edit' @click='onEdit')
-            i(class='fa fa-pencil')= ' Edit'
+    transition(name='slide-fade')
+        article(class='post')
+            h4(class='post-title')= '{{post.title}}'
+            section(class='post-content' v-html='markdown.content')
+            span(v-show='isOwner' class='post-edit' @click='onEdit')
+                i(class='fa fa-pencil')= ' Edit'
 </template>
 
 <script>
@@ -156,5 +157,33 @@ export default postDetail;
                 cursor: pointer;
             }
         }
+    }
+
+    .slide-fade-enter {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+
+    .slide-fade-enter-to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .slide-fade-enter-active {
+        transition: all 0.5s ease;
+    }
+
+    .slide-fade-leave {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .slide-fade-leave-to {
+        opacity: 0;
+        transform: translateX(50%);
+    }
+
+    .slide-fade-leave-active {
+        transition: all 0.2s ease;
     }
 </style>

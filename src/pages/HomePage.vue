@@ -16,11 +16,13 @@
 'use strict';
 
 import Vue from 'vue';
+import marked from 'marked';
 import '../base';
 import MainHeader from '../components/MainHeader.vue';
 import NavFooter from '../components/NavFooter.vue';
 import ListView from '../components/ListView.vue';
 import api from '../api';
+import Log from '../common/log.js';
 
 const HomePage = Vue.component('HomePage', {
   data () {
@@ -50,22 +52,23 @@ const HomePage = Vue.component('HomePage', {
       fetchPosts(page, size) {
           console.log('fetchPosts');
           const self = this;
-          api.post.fetch(page, size).then((response) => {
-              console.log('response: ' + JSON.stringify(response['content']));
+          api.post.fetch(page, size, true).then((response) => {
               const items = response['content'];
 
               if (items && items.length > 0) {
                 self.items.length = 0;
                 
-                items.forEach(item => {
+                items.forEach((item) => {
+                    const marketContent = marked(item.content);
+
+                    item.content = marketContent;
+
                     self.items.push(item);
                 });
-
-                console.log("self.items: " + JSON.stringify( self.items.length));
               }
 
           }, (error) => {
-              console.log('fetch post fail: ' + JSON.stringify(error));
+              Log.d(`fetch post fail:  ${JSON.stringify(error)}`);
           });
       }
   },

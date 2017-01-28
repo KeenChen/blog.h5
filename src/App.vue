@@ -1,7 +1,6 @@
 <template lang='pug'>
     div(class='app')
         div(class='app-content')
-            transition(name='fade' mode='out-in')
             router-view
         nav-side(class='app-nav')
 </template>
@@ -75,6 +74,7 @@ export default App;
 
 <style lang='sass'>
 @import '../assets/scss/base';
+@import '../node_modules/animate.css/animate';
 
 .app {
     width: 100%;

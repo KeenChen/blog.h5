@@ -2,7 +2,9 @@
 
 import Vue from 'vue';
 import url from './urls';
-import {Store} from '../store';
+import {
+    Store
+} from '../store';
 import Crypt from 'jssha';
 
 const http = Vue.http;
@@ -31,7 +33,7 @@ const apiUser = {
                     });
                     resolve(json.content);
                 } else {
-                    console.log('post '+ url.account.login + ' fail, call reject');
+                    console.log('post ' + url.account.login + ' fail, call reject');
                     reject(response);
                 }
             }, (error) => {
@@ -50,12 +52,18 @@ const apiPost = {
     }),
 
     fetchAll(param) {
-       
+
     },
 
-    fetch(page, size) {
+    fetch(page, size, onlySummary) {
         return new Promise((resolve, reject) => {
-            http.get(url.post).then(response => {
+            http.get(url.post, {
+                params: {
+                    page: page,
+                    size: size,
+                    onlySummary: false
+                }
+            }).then(response => {
                 resolve(response.json());
             }, error => {
                 reject(error);
@@ -68,7 +76,9 @@ const apiPost = {
         body.author = Store.state.user.uid || Store.state.user._id;
 
         return new Promise((resolve, reject) => {
-            apiPost.api.save({id: body._id}, body).then(response => {
+            apiPost.api.save({
+                id: body._id
+            }, body).then(response => {
                 console.log('response: ' + JSON.stringify(response));
 
                 const json = response.body;

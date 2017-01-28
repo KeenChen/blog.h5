@@ -12,9 +12,9 @@
         div(class='item-content') 
             img(v-show='item.cover && item.cover.length > 0' class='item-content-cover' v-bind:src='item.cover && item.cover[0]')
             section(class='item-content-overview')
-                h4= '{{item.title}}'
+                h1= '{{item.title}}'
                 div(v-html='item.content')
-                span= '...'
+                span= 'more ...'
         
         //- footer: 互动功能区。点赞，收藏，转发
         div(class='item-footer')
@@ -150,14 +150,19 @@ export default ListItem;
 
         .item-content {
             position: relative;
+            padding-bottom: 2em;
 
             .item-content-cover {
                 width: 100%;
             }
 
             .item-content-overview {
-                h4 {
+                h1, h2 {
+                    font-size: 2.25em;
+                }
 
+                h3, h4 {
+                    font-size: 1.5em;
                 }
 
                 p {
