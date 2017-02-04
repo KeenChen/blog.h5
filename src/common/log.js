@@ -1,8 +1,14 @@
 'use strict';
 
+import {Config} from '../base';
+
+console.log(`log.js: isDebug ${JSON.stringify(Config)}`);
+
 const log = {
     echo() {
-        console.log(JSON.stringify(arguments[0]));
+        if (Config.isDebug) {
+            console.log(JSON.stringify(arguments[0]));
+        }
     },
 
     i() {

@@ -16,13 +16,11 @@ const Start = {
 
 Start.init();
 
-
-export const Config = {
+const Config = {
     isDebug: process.env.NODE_ENV == 'development',
     Default: {
         PAGE_SIZE: 50
     }
 };
 
-console.log('process.env: ' + JSON.stringify(process.env));
-console.log('Config: ' + JSON.stringify(Config));
+export {Config};
