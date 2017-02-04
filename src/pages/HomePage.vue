@@ -65,6 +65,11 @@ const HomePage = Vue.component('HomePage', {
 
                     self.items.push(item);
                 });
+
+                // Array.prototype.push.apply(self.items, items);
+        
+
+                Log.d(`self.items ${JSON.stringify(self.items)}`);
               }
 
           }, (error) => {

@@ -59,9 +59,9 @@ const apiPost = {
         return new Promise((resolve, reject) => {
             http.get(url.post, {
                 params: {
-                    page: page,
-                    size: size,
-                    onlySummary: false
+                    page,
+                    size,
+                    onlySummary
                 }
             }).then(response => {
                 resolve(response.json());

@@ -26,15 +26,6 @@ const App = {
         this.init();
 
         const isLogin = Store.getters.isLogin;
-        console.log('isLogin: ' + isLogin);
-
-        // if (isLogin) {
-        //     router.push('/');
-        // } else {
-        //     router.push({
-        //         name: 'account'
-        //     });
-        // }
     },
 
     methods: {
@@ -53,7 +44,6 @@ const App = {
                 smartypants: false,
 
                 highlight(code) {
-                    console.log('highlight code: ' + code);
                     return highlightJs.highlightAuto(code).value;
                 }
             });
