@@ -63,7 +63,7 @@ export default App;
 </script>
 
 <style lang='sass'>
-@import '../assets/scss/base';
+@import '../statics/assets/scss/base';
 @import '../node_modules/animate.css/animate';
 
 .app {

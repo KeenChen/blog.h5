@@ -84,7 +84,7 @@ export default Editor;
 </script>
 
 <style lang='sass'>
-@import '../../assets/scss/base';
+@import '../../statics/assets/scss/base';
 
 .admin {
     display: flex;

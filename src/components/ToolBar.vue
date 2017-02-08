@@ -52,7 +52,7 @@ export default {
 </script>
 
 <style lang='sass'>
-@import '../../assets/scss/base';
+@import '../../statics/assets/scss/base';
 
 $tool-background-color: #fafafa;
 

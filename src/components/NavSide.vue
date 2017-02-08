@@ -66,7 +66,7 @@ export default NavSide;
 </script>
 
 <style lang='sass'>
-@import '../../assets/scss/base';
+@import '../../statics/assets/scss/base';
 
 @mixin link-active() {
     @extend .grey, .lighten-5 ;
