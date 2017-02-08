@@ -1,12 +1,16 @@
+'use strict';
+
 var path = require('path')
 var webpack = require('webpack')
+var PrerenderSpaPlugin = require('prerender-spa-plugin')
+var isDebug = process.env.NODE_ENV === 'development';
 
 module.exports = {
     entry: './app.js',
     output: {
         path: __dirname + '/assets/dist',
         publicPath: '/assets/dist',
-        filename: 'bundle.js'
+        filename: isDebug ? 'dev_bundle.js': 'bundle.js'
     },
     module: {
         rules: [
@@ -49,6 +53,19 @@ module.exports = {
     devtool: '#eval-source-map'
 }
 
+var preerenderPlugin = new PrerenderSpaPlugin(
+      // Absolute path to compiled SPA
+      path.join(__dirname, './assets/dist'),
+      // List of routes to prerender
+      [ '/', '/post']
+    );
+
+var uglifyJsPlugin = new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
+        });
+
 if (process.env.NODE_ENV === 'production') {
     // http://vue-loader.vuejs.org/en/workflow/production.html
     module.exports.devtool = '#source-map'
@@ -58,16 +75,12 @@ if (process.env.NODE_ENV === 'production') {
                 NODE_ENV: '"production"'
             }
         }),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
-        }),
+        uglifyJsPlugin
+        ,
         new webpack.LoaderOptionsPlugin({
             minimize: true,
             debug: false
         })
-
     ])
 }
 
@@ -79,6 +92,13 @@ if (process.env.NODE_ENV === 'development') {
             'process.env': {
                 NODE_ENV: '"development"'
             }
+        })
+        ,
+        uglifyJsPlugin
+        ,
+        new webpack.LoaderOptionsPlugin({
+            minimize: true,
+            debug: false
         })
     ])
 }

@@ -9,7 +9,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "NODE_ENV=development webpack-dev-server --open --inline --hot",
-    "build": "NODE_ENV=production webpack --progress --hide-modules",
+    "build": "NODE_ENV=production webpack --progress",
+    "buildDev": "NODE_ENV=development webpack --progress",
     "staging": "NODE_ENV=production webpack-dev-server --open --inline --hot",
     "start": "NODE_ENV=production nodemon ./server.js"
   },
@@ -42,6 +43,8 @@
     "materialize-css": "^0.98.0",
     "node-sass": "^4.5.0",
     "normalize.css": "^5.0.0",
+    "phantomjs": "^2.1.7",
+    "prerender-spa-plugin": "^2.0.1",
     "pug": "^2.0.0-beta6",
     "pug-loader": "^2.3.0",
     "sass-loader": "^4.1.1",
