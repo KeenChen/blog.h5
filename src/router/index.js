@@ -1,44 +1,67 @@
 'use strict';
 
 import Router from 'vue-router';
-import HomePage from '../pages/HomePage.vue';
-import Editor from '../pages/Editor.vue';
-import PostDetail from '../pages/PostDetail.vue';
-import Account from '../pages/Account.vue';
-import Preview from '../pages/Preview.vue';
+// import HomePage from '../pages/HomePage.vue';
+// import Editor from '../pages/Editor.vue';
+// import PostDetail from '../pages/PostDetail.vue';
+// import Account from '../pages/Account.vue';
+// import Preview from '../pages/Preview.vue';
 
 const routes = [
     {
         name: 'index',
         path: '/',
-        component: HomePage
+        component: resolve => {
+            require.ensure(['../pages/HomePage.vue'], () => {
+                resolve(require('../pages/HomePage.vue'))
+            }, 'index')
+        }
     },
     {
         name: 'admin',
         path: '/admin',
-        component: Editor // TODO: change to Admin page
+        component: resolve => {
+            require.ensure(['../pages/Account.vue'], () => {
+                            resolve(require('../pages/Account.vue'))
+                        }, 'account')
+        } 
     },
     {
         name: 'post',
         path: '/post/:id',
-        component: PostDetail
+        component: resolve => {
+            require.ensure(['../pages/PostDetail.vue'], () => {
+                            resolve(require('../pages/PostDetail.vue'))
+                        }, 'post')
+        }
     },
     {
         name: 'account',
         path: '/account/:id?',
-        component: Account
+        component: resolve => {
+            require.ensure(['../pages/Account.vue'], () => {
+                            resolve(require('../pages/Account.vue'))
+                        }, 'account')
+        } 
     },
     {
         name: 'editor',
         path: '/editor',
-        component: Editor
+        component: resolve => {
+            require.ensure(['../pages/Editor.vue'], () => {
+                            resolve(require('../pages/Editor.vue'))
+                        }, 'editor')
+        } 
     }
-    
     ,
     {
         name: 'preview',
         path: '/preview/:id',
-        component: Preview
+        component: resolve => {
+            require.ensure(['../pages/Preview.vue'], () => {
+                            resolve(require('../pages/Preview.vue'))
+                        }, 'editor')
+        } 
     }
 ];
 

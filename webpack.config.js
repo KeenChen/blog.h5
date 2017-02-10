@@ -2,15 +2,17 @@
 
 var path = require('path')
 var webpack = require('webpack')
-var PrerenderSpaPlugin = require('prerender-spa-plugin')
+// var PrerenderSpaPlugin = require('prerender-spa-plugin')
 var isDebug = process.env.NODE_ENV === 'development';
 
 module.exports = {
-    entry: './app.js',
+    entry: {
+        app: ['./app.js']
+    },
     output: {
-        path: __dirname + '/assets/dist',
-        publicPath: '/assets/dist',
-        filename: isDebug ? 'dev_bundle.js': 'bundle.js'
+        path: __dirname + '/statics/assets/dist/',
+        publicPath: '/assets/dist/',
+        filename: `${isDebug? 'dev.': ''}[name].bundle.js`
     },
     module: {
         rules: [
@@ -53,12 +55,12 @@ module.exports = {
     devtool: '#eval-source-map'
 }
 
-var preerenderPlugin = new PrerenderSpaPlugin(
-      // Absolute path to compiled SPA
-      path.join(__dirname, './assets/dist'),
-      // List of routes to prerender
-      [ '/', '/post']
-    );
+// var preerenderPlugin = new PrerenderSpaPlugin(
+//       // Absolute path to compiled SPA
+//       path.join(__dirname, './assets/dist'),
+//       // List of routes to prerender
+//       [ '/', '/post']
+//     );
 
 var uglifyJsPlugin = new webpack.optimize.UglifyJsPlugin({
             compress: {

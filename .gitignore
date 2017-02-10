@@ -1,4 +1,5 @@
 node_modules
-assets/dist/
+!node_modules/highlight.js/lib/index.js
+statics/assets/dist/
 npm-debug.log
 .vscode/
