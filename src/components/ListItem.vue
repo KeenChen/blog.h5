@@ -103,7 +103,7 @@ const ListItem = {
 
     computed: {
         updateAt() {
-            return  DateFormat(this.item.updateAt, 'yyyy-mm-dd HH:MM');
+            return  DateFormat(this.item.updatedAt, 'yyyy-mm-dd HH:MM');
         },
         isLike() {
             return this.item.isLike;
