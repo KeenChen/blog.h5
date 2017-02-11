@@ -2,8 +2,10 @@
 
 var path = require('path')
 var webpack = require('webpack')
-// var PrerenderSpaPlugin = require('prerender-spa-plugin')
-var isDebug = process.env.NODE_ENV === 'development';
+var versionConfig = require('./version.js');
+var isDebug = versionConfig.DEBUG;
+
+console.log(`version info: ${JSON.stringify(versionConfig)}`);
 
 module.exports = {
     entry: {
@@ -53,18 +55,11 @@ module.exports = {
         noInfo: true
     },
     devtool: '#eval-source-map'
-}
-
-// var preerenderPlugin = new PrerenderSpaPlugin(
-//       // Absolute path to compiled SPA
-//       path.join(__dirname, './assets/dist'),
-//       // List of routes to prerender
-//       [ '/', '/post']
-//     );
+};
 
 var uglifyJsPlugin = new webpack.optimize.UglifyJsPlugin({
             compress: {
-                warnings: false
+                warnings: isDebug
             }
         });
 
@@ -75,7 +70,11 @@ if (process.env.NODE_ENV === 'production') {
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: '"production"'
-            }
+            },
+            DEBUG: versionConfig.DEBUG,
+            PRODUCTION: !versionConfig.DEBUG,
+            VERSION: versionConfig.VERSION_CODE,
+            VERSION_NAME: versionConfig.VERSION_NAME
         }),
         uglifyJsPlugin
         ,
@@ -93,7 +92,12 @@ if (process.env.NODE_ENV === 'development') {
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: '"development"'
-            }
+            },
+
+            DEBUG: versionConfig.DEBUG,
+            PRODUCTION: !versionConfig.DEBUG,
+            VERSION: versionConfig.VERSION_CODE,
+            VERSION_NAME: versionConfig.VERSION_NAME
         })
         ,
         uglifyJsPlugin
