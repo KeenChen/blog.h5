@@ -1,6 +1,6 @@
 <template lang='pug'>
     section(class='admin')
-        toolbar(class='admin-toolbar' @toolEdit='onEdit' @toolReview='onPreview' @toolPublish='onPublish')
+        toolbar(v-bind:tags='this.post.tags' class='admin-toolbar' @edit='onEdit' @review='onPreview' @publish='onPublish' @updateTags='onUpdateTags')
         input(class='admin-title' v-model='post.title' v-bind:placeholder='hint.title')
 
         textarea(class='admin-content' v-model='post.content' v-bind:placeholder='hint.content')
@@ -27,7 +27,8 @@ const Editor = Vue.component('Editor', {
                 _id: '',
                 title: '',
                 content: '',
-                author: ''
+                author: '',
+                tags: []
             },
             hint
         }
@@ -38,12 +39,26 @@ const Editor = Vue.component('Editor', {
         const post = this.$route.params['post'];
         console.log('post: ' + JSON.stringify(post));
         if (post) {
-            this.post = post;
+            this.post._id = post._id;
+            this.post.title = post.title;
+            this.post.content = post.content;
+            this.post.author = post.author;
+            this.post.createdAt = post.createdAt;
+            this.post.updatedAt = post.updatedAt;
+
+              
+            post.tags.forEach(value => {
+                this.post.tags.push(value);
+            });
+
+            post.comments.forEach(value => {
+                this.post.comments.push(value);
+            });
         }
     },
 
     methods: {
-        onPreview() {
+        onPreview(data) {
             console.log('do onPreview');
 
             Router.push({
@@ -54,23 +69,46 @@ const Editor = Vue.component('Editor', {
             });
         },
 
-        onPublish() {
+        onPublish(data) {
+            console.log(`onPublish ${JSON.stringify(data)}`);
             console.log('do onPublish: ' + JSON.stringify(this.post));
             
-            api.post.save(this.post).then((response) => {
-                console.log('save post success: ' + JSON.stringify(response));
-                const id = response.content['_id'] || response.content['id'];
+            if (Array.isArray(data.tags)) {
+                this.post.tags.length = 0;
 
-                if (!this.post._id) {
-                    this.post['_id'] = id; 
-                }
-            }, (error) => {
-                console.log('save post fail: ' + JSON.stringify(error));
-            });
+                data.tags.forEach(value => {
+                    this.post.tags.push(value);
+                });
+            }
+
+            this.postData();
         },
 
         onEdit() {
             console.log('do onEdit');
+        },
+
+        onUpdateTags(tags) {
+            this.post.tags.length = 0;
+
+            tags.forEach(value => {
+                this.post.tags.push(value);
+            });
+
+            this.postData();
+        },
+
+        postData() {
+            api.post.save(this.post).then((response) => {
+                            console.log('save post success: ' + JSON.stringify(response));
+                            const id = response.content['_id'] || response.content['id'];
+
+                            if (!this.post._id) {
+                                this.post['_id'] = id; 
+                            }
+                        }, (error) => {
+                            console.log('save post fail: ' + JSON.stringify(error));
+                        });
         }
     },
 

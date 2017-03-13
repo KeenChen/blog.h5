@@ -1,0 +1,13 @@
+@import '../base';
+
+$MAX_WIDTH: 720px;
+
+@media (max-width: $MAX_WIDTH) {
+    .hp .app-content {
+        padding: 1em;
+    }
+
+    .ns .app-nav {
+        transform: translateX();
+    }
+}
