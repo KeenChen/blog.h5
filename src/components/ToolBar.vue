@@ -1,15 +1,15 @@
 <template lang='pug'>
     section(class='tool')
         ul
-            li(class='tool-edit' @click.stop='onEdit')='Edit'
-                i(class='fa fa-code fa-fw fa-pull-left')
-            li(class='tool-review' @click.stop='onReview')='Preview'
-                i(class='fa fa-file-text-o fa-fw fa-pull-left')
-            li(class='tool-summit' @click.stop='onPubish')='Publish'
-                i(class='fa fa-send-o fa-fw fa-pull-left')
+            li(class='tool-edit tool-item' @click.stop='onEdit')
+                i(class='fa fa-code fa-fw fa-pull-left')=' Edit'
+            li(class='tool-review tool-item' @click.stop='onReview')
+                i(class='fa fa-file-text-o fa-fw fa-pull-left')=' Preview'
+            li(class='tool-summit tool-item' @click.stop='onPubish')
+                i(class='fa fa-send-o fa-fw fa-pull-left')=' Publish'
             li(class='tool-tag')
-                i(class='fa fa-tags')='Tags'
-                div
+                i(class='fa fa-tags')='Tags:'
+                div(class='tag-container')
                     span(v-for='tag in tags' class='tag-item chip')='{{tag}}'
                         i(class='fa fa-minus-circle' @click.stop='onRemoveTag(tag)')
                    
@@ -118,7 +118,7 @@ $tool-background-color: #fafafa;
         padding: 0;
         margin: 0;
 
-        li {
+        .tool-item {
             display: inline-block;
             cursor: pointer;
             height: 100%; 
@@ -138,32 +138,40 @@ $tool-background-color: #fafafa;
     }
 
     .tool-review {
+    }
 
-        .tool-tag {
-            position: absolute;
-            top: 0;
-            right: 0;
+    .tool-summit {
+    }
+
+    .tool-tag {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: inline;
+        cursor: default;
+        text-align: left;
+
+        .tag-item {
             display: inline;
-            cursor: default;
-            text-align: left;
-
-            .tag-item {
-                display: inline;
-                padding: .5em;
-                i {
-                    cursor: pointer;
-                    padding: .25em 0 .25em .25em;
-                }
-            }
-
-            .tag-add {
+            padding: .5em;
+            i {
                 cursor: pointer;
-                padding: .25em 1em;
+                padding: .25em 0 .25em .25em;
+            }
+        }
 
-                input {
-                    max-width: 8em;
-                    width: 6em;
-                }
+        .tag-container {
+            display: inline-block;
+            margin-left: .5em;
+        }
+
+        .tag-add {
+            cursor: pointer;
+            padding: .25em 1em;
+
+            input {
+                max-width: 8em;
+                width: 6em;
             }
         }
     }
