@@ -52,7 +52,7 @@ const HomePage = Vue.component('HomePage', {
       fetchPosts(page, size) {
           console.log('fetchPosts');
           const self = this;
-          api.post.fetch(page, size, true).then((response) => {
+          api.post.fetch(page, size, 1).then((response) => {
               const items = response['content'];
 
               if (items && items.length > 0) {
