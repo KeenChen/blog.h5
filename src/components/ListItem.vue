@@ -138,6 +138,11 @@ export default ListItem;
                 span {
                     padding-right: 1em;
                 }
+
+                .chip {
+                    font-weight: 200;
+                    background-color: rgba(250, 250, 250, 0.61);
+                }
            }
 
            .header-more {
